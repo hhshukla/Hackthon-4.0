@@ -9,6 +9,7 @@ export type DummyTestProps = {
     text?: string;
     url?: string;
   };
+  theme?: "light" | "dark";
 };
 const DummyTest = tv({
   slots: {
@@ -60,11 +61,15 @@ const DummyTest = tv({
   },
 });
 
-const DummyTestComp: React.FC<DummyTestProps> = () => {
+const DummyTestComp: React.FC<DummyTestProps> = ({
+  theme = "light",
+}: DummyTestProps) => {
   const { verticallyPadding, titleClass } = DummyTest({});
+  const themeClass =
+    theme === "light" ? "bg-black text-white" : "bg-white text-black";
 
   return (
-    <div className={`${verticallyPadding()}`}>
+    <div className={`${verticallyPadding()} ${themeClass}`}>
       <h1 className={titleClass()}>HELLO</h1>
       <p className="">This is Test</p>
       <img src="" alt="dummy" />

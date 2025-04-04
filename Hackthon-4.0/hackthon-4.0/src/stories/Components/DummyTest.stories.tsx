@@ -13,14 +13,45 @@ import { defaultData } from "./DummyTest";
 const meta: Meta<typeof DummyTestComp> = {
   title: "Components/DummyComponent/DummyTest",
   component: DummyTestComp,
+  argTypes: {
+    theme: {
+      control: "select",
+      options: ["light", "dark"], // Allows theme selection in Storybook controls
+    },
+  },
 };
 
 type Story = StoryObj<typeof DummyTestComp>;
 
-export const FirstStory: Story = {
-  args: flattenObj(defaultData),
-  render: (props) => {
-    return <DummyTestComp {...(expandObj({ ...props }) as DummyTestProps)} />;
+// Light Theme Story
+export const LightThemeStory: Story = {
+  args: {
+    theme: "light",
+    ...flattenObj(defaultData.light), // Use light theme data
+  },
+  render: ({ theme }) => {
+    const selectedThemeData = defaultData[theme as "light" | "dark"];
+    return (
+      <DummyTestComp
+        {...(expandObj({ ...selectedThemeData }) as DummyTestProps)}
+      />
+    );
+  },
+};
+
+// Dark Theme Story
+export const DarkThemeStory: Story = {
+  args: {
+    theme: "dark",
+    ...flattenObj(defaultData.dark), // Use dark theme data
+  },
+  render: ({ theme }) => {
+    const selectedThemeData = defaultData[theme as "light" | "dark"];
+    return (
+      <DummyTestComp
+        {...(expandObj({ ...selectedThemeData }) as DummyTestProps)}
+      />
+    );
   },
 };
 
