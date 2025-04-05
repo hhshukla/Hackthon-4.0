@@ -1,6 +1,7 @@
 import React from "react";
 import "./Banner.mock";
 import { useTheme } from "next-themes";
+import Image from "next/image";
 
 interface BannerProps {
   img?: string;
@@ -33,7 +34,7 @@ const Banner = ({
         } `}
       >
         <div className="relative">
-          {img && <img src={img} alt="banner-image" />}
+          {img && <Image src={img} alt="banner-image" />}
           <div
             className={`md:absolute md:inset-0 lg:top-1/2 lg:left-0 flex flex-col items-center justify-center 
             md:opacity-50 p-6 rounded-lg shadow-lg m-4 lg:w-1/2 md:h-[400px] 
