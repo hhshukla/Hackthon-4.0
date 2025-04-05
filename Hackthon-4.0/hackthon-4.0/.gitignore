@@ -42,4 +42,9 @@ next-env.d.ts
 
 *storybook.log
 
-BED/HZTLHackathon4/HZTLHackathon/packages
+BED/HZTLHackathon/packages
+BED/HZTLHackathon/HZTLHackathon/Web.config
+BED/HZTLHackathon/HZTLHackathon/Web.Debug.config
+BED/HZTLHackathon/HZTLHackathon/Views/web.config
+BED/HZTLHackathon/HZTLHackathon/Web.Release.config
+BED/HZTLHackathon/HZTLHackathon/bin
