@@ -1,17 +1,18 @@
+import { ThemeProvider } from "next-themes";
+import Banner from "@/Components/Banner/Banner";
+import { BannerData } from "@/Components/Banner/Banner.mock";
 import DummyTest from "@/Components/DummyComponent/DummyTest";
 import React from "react";
-import Header from "../Components/Header/Header";
-import Footer from "../Components/Footer/Footer";
+import "../styles/globals.css";
+import ThemeSwitcher from "@/Components/ThemeSwicher/ThemeSwithcher";
 
 const index = () => {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
-      <main className="flex-grow">
-        {/* Your main content goes here */}
-      </main>
-      <Footer />
-    </div>
+    <ThemeProvider enableSystem={true} attribute="class">
+      <ThemeSwitcher />
+      <Banner {...BannerData} />
+      <DummyTest />
+    </ThemeProvider>
   );
 };
 
