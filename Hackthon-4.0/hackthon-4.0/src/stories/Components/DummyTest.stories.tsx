@@ -8,6 +8,7 @@ import DummyTestComp, {
 import { expandObj, flattenObj } from "lib/object-parser";
 // mock
 import { defaultData } from "./DummyTest";
+import "../../styles/index.css";
 
 //👇 This default export determines where your story goes in the story list
 const meta: Meta<typeof DummyTestComp> = {
