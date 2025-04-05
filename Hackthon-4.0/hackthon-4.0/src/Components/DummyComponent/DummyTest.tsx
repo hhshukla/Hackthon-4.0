@@ -1,6 +1,7 @@
 import { useTheme } from "next-themes";
 import React from "react";
 import { tv } from "tailwind-variants";
+import Image from "next/image";
 
 export type DummyTestProps = {
   title?: string;
@@ -76,7 +77,7 @@ const DummyTestComp: React.FC<DummyTestProps> = ({}: DummyTestProps) => {
     >
       <h1 className={titleClass()}>HELLO</h1>
       <p>This is Test</p>
-      <img src="" alt="dummy" />
+      <Image src="" alt="dummy" />
       <a href="#">Test</a>
     </div>
   );
