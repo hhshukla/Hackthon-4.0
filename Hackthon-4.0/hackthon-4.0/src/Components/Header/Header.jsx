@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useTheme } from "next-themes";
 import ThemeSwitcher from "../ThemeSwicher/ThemeSwithcher";
-import Link from 'next/link';
-import { useRouter } from 'next/router'; // Add this import
+import Link from "next/link";
+import { useRouter } from "next/router"; // Add this import
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -80,9 +80,11 @@ const Header = () => {
               <Link
                 href="/"
                 className={`${
-                  isActive('/') 
-                    ? 'text-blue-600 font-bold border-b-2 border-blue-600'
-                    : `${currentTheme === "dark" ? "text-white" : "text-gray-600"} hover:text-blue-600`
+                  isActive("/")
+                    ? "text-blue-600 font-bold border-b-2 border-blue-600"
+                    : `${
+                        currentTheme === "dark" ? "text-white" : "text-gray-600"
+                      } hover:text-blue-600`
                 }`}
               >
                 Home
@@ -92,33 +94,30 @@ const Header = () => {
               <Link
                 href="/products"
                 className={`${
-                  isActive('/products')
-                    ? 'text-blue-600 font-bold border-b-2 border-blue-600'
-                    : `${currentTheme === "dark" ? "text-white" : "text-gray-600"} hover:text-blue-600`
+                  isActive("/products")
+                    ? "text-blue-600 font-bold border-b-2 border-blue-600"
+                    : `${
+                        currentTheme === "dark" ? "text-white" : "text-gray-600"
+                      } hover:text-blue-600`
                 }`}
               >
                 Products
               </Link>
             </li>
             <li>
-              <Link
-                href="/about"
-                className={`${
-                  isActive('/about')
-                    ? 'text-blue-600 font-bold border-b-2 border-blue-600'
-                    : `${currentTheme === "dark" ? "text-white" : "text-gray-600"} hover:text-blue-600`
-                }`}
-              >
-                About
-              </Link>
+              <a href="/service" className="text-gray-600 hover:text-blue-600">
+                Services
+              </a>
             </li>
             <li>
               <Link
                 href="/contact"
                 className={`${
-                  isActive('/contact')
-                    ? 'text-blue-600 font-bold border-b-2 border-blue-600'
-                    : `${currentTheme === "dark" ? "text-white" : "text-gray-600"} hover:text-blue-600`
+                  isActive("/contact")
+                    ? "text-blue-600 font-bold border-b-2 border-blue-600"
+                    : `${
+                        currentTheme === "dark" ? "text-white" : "text-gray-600"
+                      } hover:text-blue-600`
                 }`}
               >
                 Contact
