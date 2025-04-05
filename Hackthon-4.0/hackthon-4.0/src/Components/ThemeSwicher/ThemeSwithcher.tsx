@@ -14,9 +14,9 @@ const ThemeSwitcher = () => {
   return (
     <button
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-      className="p-2 rounded bg-gray-300 dark:bg-gray-800 text-black dark:text-white"
+      className="p-2 rounded bg-gray-300 dark:bg-gray-800 text-black dark:text-white text-xl"
     >
-      Switch to {theme === "light" ? "Dark" : "Light"} Mode
+      {theme === "light" ? "🌙" : "🌞"}
     </button>
   );
 };

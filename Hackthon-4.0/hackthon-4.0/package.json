@@ -21,12 +21,14 @@
     "prop-types": "^15.8.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-speech-recognition": "^4.0.0",
     "swiper": "^11.2.6",
     "tailwind-variants": "^1.0.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.6",
     "@eslint/eslintrc": "^3",
+    "@netlify/plugin-nextjs": "^5.10.3",
     "@storybook/addon-controls": "^8.6.12",
     "@storybook/addon-essentials": "^8.6.12",
     "@storybook/addon-interactions": "^8.6.12",
@@ -44,6 +46,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/react-speech-recognition": "^3.9.6",
     "@vitest/browser": "^3.1.1",
     "@vitest/coverage-v8": "^3.1.1",
     "autoprefixer": "^10.4.21",
