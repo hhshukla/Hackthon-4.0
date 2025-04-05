@@ -51,14 +51,14 @@ const Banner = ({
             />
           )}
           <div
-            className={`md:absolute md:inset-0 lg:top-1/2 flex flex-col justify-center
-                md:opacity-50 p-6 rounded-lg shadow-lg m-4 lg:w-1/2 md:h-[400px]
+            className={`md:absolute md:inset-0 lg:top-1/2 lg:bottom-0 flex flex-col justify-center
+                md:opacity-50 p-6 rounded-lg shadow-lg m-4 lg:w-1/2 md:h-[400px] text-center
                 ${
                   position === "left"
                     ? "items-start lg:left-0 text-left"
                     : position === "right"
                     ? "items-end lg:right-0 text-right"
-                    : "items-center lg:left-1/2 transform lg:-translate-x-1/2 text-center"
+                    : ""
                 }
                 ${
                   currentTheme === "dark"
