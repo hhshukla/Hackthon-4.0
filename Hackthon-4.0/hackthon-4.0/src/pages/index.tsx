@@ -1,19 +1,26 @@
+import { ThemeProvider } from "next-themes";
+import Banner from "@/Components/Banner/Banner";
+import { BannerData } from "@/Components/Banner/Banner.mock";
 import DummyTest from "@/Components/DummyComponent/DummyTest";
 import React from "react";
-import Header from "../Components/Header/Header";
-import Footer from "../Components/Footer/Footer";
-import SearchFilter from "../Components/SearchFilter/SearchFilter";
+import "../styles/globals.css";
+import ThemeSwitcher from "@/Components/ThemeSwicher/ThemeSwithcher";
+
+//
+import Header from "@/Components/Header/Header";
+import Footer from "@/Components/Footer/Footer";
+import SearchFilter from "@/Components/SearchFilter/SearchFilter";
 
 const index = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <ThemeProvider enableSystem={true} attribute="class">
+      <ThemeSwitcher />
       <Header />
-      <main className="flex-grow">
-        <SearchFilter />
-        {/* Your additional content goes here */}
-      </main>
+      <Banner {...BannerData} />
+      <SearchFilter />
+      <DummyTest />
       <Footer />
-    </div>
+    </ThemeProvider>
   );
 };
 

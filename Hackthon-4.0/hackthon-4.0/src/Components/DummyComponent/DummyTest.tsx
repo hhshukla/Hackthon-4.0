@@ -1,3 +1,4 @@
+import { useTheme } from "next-themes";
 import React from "react";
 import { tv } from "tailwind-variants";
 
@@ -14,7 +15,7 @@ export type DummyTestProps = {
 const DummyTest = tv({
   slots: {
     verticallyPadding:
-      "p-2 lg:p-6 bg-primary-blue lg:rounded-none overflow-hidden relative lg:h-[388px] mt-[40px]",
+      "p-2 lg:p-6 lg:rounded-none overflow-hidden relative lg:h-[388px]",
     titleClass:
       "text-base lg:text-lg font-semibold leading-6 lg:leading-8 text-primary-white lg:text-h3-desktop",
   },
@@ -61,22 +62,24 @@ const DummyTest = tv({
   },
 });
 
-const DummyTestComp: React.FC<DummyTestProps> = ({
-  theme = "light",
-}: DummyTestProps) => {
+const DummyTestComp: React.FC<DummyTestProps> = ({}: DummyTestProps) => {
   const { verticallyPadding, titleClass } = DummyTest({});
-  const themeClass =
-    theme === "light" ? "bg-black text-white" : "bg-white text-black";
+  const { theme, systemTheme } = useTheme();
+
+  const currentTheme = theme === "system" ? systemTheme : theme;
 
   return (
-    <div className={`${verticallyPadding()} ${themeClass}`}>
+    <div
+      className={`${
+        currentTheme === "dark" ? "bg-black text-white" : "bg-white text-black"
+      } ${verticallyPadding()} `}
+    >
       <h1 className={titleClass()}>HELLO</h1>
-      <p className="">This is Test</p>
+      <p>This is Test</p>
       <img src="" alt="dummy" />
-      <a href="" className="">
-        Test
-      </a>
+      <a href="#">Test</a>
     </div>
   );
 };
+
 export default DummyTestComp;
