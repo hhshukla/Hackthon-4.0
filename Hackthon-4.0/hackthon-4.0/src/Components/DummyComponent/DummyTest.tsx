@@ -14,7 +14,7 @@ export type DummyTestProps = {
 const DummyTest = tv({
   slots: {
     verticallyPadding:
-      "p-2 lg:p-6 bg-primary-blue lg:rounded-none overflow-hidden relative lg:h-[388px]",
+      "p-2 lg:p-6 bg-primary-blue lg:rounded-none overflow-hidden relative lg:h-[388px] mt-[40px]",
     titleClass:
       "text-base lg:text-lg font-semibold leading-6 lg:leading-8 text-primary-white lg:text-h3-desktop",
   },
