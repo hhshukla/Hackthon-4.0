@@ -27,6 +27,7 @@
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.6",
     "@eslint/eslintrc": "^3",
+    "@netlify/plugin-nextjs": "^5.10.3",
     "@storybook/addon-controls": "^8.6.12",
     "@storybook/addon-essentials": "^8.6.12",
     "@storybook/addon-interactions": "^8.6.12",
