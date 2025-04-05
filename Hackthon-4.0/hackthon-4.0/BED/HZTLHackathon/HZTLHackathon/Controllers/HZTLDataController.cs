@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using HZTLHackathon.Models;
 using HZTLHackathon.Repository;
 using HZTLHackathon.Services;
+using Sitecore.ContentSearch;
 
 namespace HZTLHackathon.Controllers
 {
@@ -46,5 +47,7 @@ namespace HZTLHackathon.Controllers
 
            return View();
         }
+
+        
     }
 }

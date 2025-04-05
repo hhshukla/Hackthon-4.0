@@ -159,6 +159,7 @@
     <Compile Include="Models\ApiResponse.cs" />
     <Compile Include="Controllers\HZTLDataController.cs" />
     <Compile Include="Models\Data.cs" />
+    <Compile Include="Models\ProductSearchResultItemModel.cs" />
     <Compile Include="pipelines\LoadRoutes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schedular\APISchedular.cs" />
@@ -176,6 +177,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="app_config\ContentSearch\Solar\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <PropertyGroup>
