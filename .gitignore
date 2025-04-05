@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Hackthon-4.0/hackthon-4.0/BED/HZTLHackathon/.vs/HZTLHackathon/config/applicationhost.config
+/Hackthon-4.0/hackthon-4.0/BED/HZTLHackathon/.vs/HZTLHackathon/FileContentIndex
+/Hackthon-4.0/hackthon-4.0/BED/HZTLHackathon/.vs/HZTLHackathon/v17/DocumentLayout.backup.json
+/Hackthon-4.0/hackthon-4.0/BED/HZTLHackathon/.vs/HZTLHackathon/v17/DocumentLayout.json
+/Hackthon-4.0/hackthon-4.0/BED/HZTLHackathon/.vs/HZTLHackathon/v17
+/Hackthon-4.0/hackthon-4.0/BED/HZTLHackathon/HZTLHackathon/obj
+/Hackthon-4.0/hackthon-4.0/BED/HZTLHackathon/HZTLHackathon/Properties
