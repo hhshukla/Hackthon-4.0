@@ -13,8 +13,8 @@ namespace HZTLHackathon.Repository
     public class HZTLDataRepository
     {
         private readonly Database _database;
-        private Product HZTLData;
-        private List<Product> HZTLDataList;
+        private readonly Product HZTLData;
+        private readonly List<Product> HZTLDataList;
         public HZTLDataRepository() {
             _database = Sitecore.Context.Database;
             HZTLData = new Product();
