@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Sitecore.ContentSearch;
+using Sitecore.ContentSearch.SearchTypes;
 
 public class ApiResponse
 {
@@ -15,7 +17,6 @@ public class Product
     public double Rating { get; set; }
     public int Stock { get; set; }
     public string Brand { get; set; }
-
     public List <string> Tags { get; set; }
     public List<string> Images { get; set; }
 }

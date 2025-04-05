@@ -152,7 +152,6 @@
     <Content Include="app_config\Include\Project\HZTLHackathon.RouteConfig.config" />
     <Content Include="app_config\Include\Project\HZTLHackathon.SiteDefination.config" />
     <Content Include="Views\HZTLData\Index2.cshtml" />
-    <Content Include="app_config\ContentSearch\Solar\CustomProductIndex.config" />
     <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -160,11 +159,11 @@
     <Compile Include="Models\ApiResponse.cs" />
     <Compile Include="Controllers\HZTLDataController.cs" />
     <Compile Include="Models\Data.cs" />
+    <Compile Include="Models\ProductSearchResultItemModel.cs" />
     <Compile Include="pipelines\LoadRoutes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schedular\APISchedular.cs" />
     <Compile Include="Repository\HZTLDataRepository.cs" />
-    <Compile Include="Services\ComputedField.cs" />
     <Compile Include="Services\ProductSearchService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +177,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="app_config\ContentSearch\Solar\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <PropertyGroup>
