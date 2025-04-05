@@ -1,11 +1,10 @@
-import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import ThemeSwitcher from "@/Components/ThemeSwicher/ThemeSwithcher";
 
-export const metadata = {
-  title: "My App",
-  description: "Using theme switcher",
-};
+// export const metadata = {
+//   title: "My App",
+//   description: "Using theme switcher",
+// };
 
 export default function RootLayout({
   children,

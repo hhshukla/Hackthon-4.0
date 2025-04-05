@@ -8,6 +8,8 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <LastActiveSolutionConfig>Release|Any CPU</LastActiveSolutionConfig>
+    <NameOfLastUsedPublishProfile>C:\projects\Hackthon-4.0\Hackthon-4.0\hackthon-4.0\BED\HZTLHackathon\HZTLHackathon\Properties\PublishProfiles\FolderProfile.pubxml</NameOfLastUsedPublishProfile>
     <LastActiveSolutionConfig>Debug|Any CPU</LastActiveSolutionConfig>
     <NameOfLastUsedPublishProfile>C:\HZTL hackathon\Hackthon-4.0\Hackthon-4.0\hackthon-4.0\BED\HZTLHackathon\HZTLHackathon\Properties\PublishProfiles\FolderProfile.pubxml</NameOfLastUsedPublishProfile>
     <View_SelectedScaffolderID>MvcViewScaffolder</View_SelectedScaffolderID>
