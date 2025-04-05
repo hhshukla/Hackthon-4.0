@@ -6,8 +6,10 @@ import React from "react";
 import ThemeSwitcher from "@/Components/ThemeSwicher/ThemeSwithcher";
 import Header from "@/Components/Header/Header";
 import Footer from "@/Components/Footer/Footer";
-import CategoryList from "@/Components/CategoryList/CategoryList";
+// import CategoryList from "@/Components/CategoryList/CategoryList";
 import CardList from "@/Components/CardList/CardList";
+import ChatBot from "@/Components/Chatbot/Chatbot";
+// import SearchFilter from "@/Components/SearchFilter/SearchFilter";
 const index = () => {
   return (
     <ThemeProvider enableSystem={true} attribute="class">
@@ -16,8 +18,10 @@ const index = () => {
       <Banner {...BannerData} />
       {/* <DummyTest /> */}
       <CardList layout="vertical" />
-      <CategoryList />
+      {/* <CategoryList /> */}
+      {/* <SearchFilter /> */}
       <Footer />
+      <ChatBot />
     </ThemeProvider>
   );
 };
