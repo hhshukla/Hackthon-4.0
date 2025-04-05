@@ -34,7 +34,15 @@ const Banner = ({
         } `}
       >
         <div className="relative">
-          {img && <Image src={img} alt="banner-image" />}
+          {img && (
+            <Image
+              src={img}
+              alt="banner-image"
+              layout="responsive"
+              width={400}
+              height={300}
+            />
+          )}
           <div
             className={`md:absolute md:inset-0 lg:top-1/2 lg:left-0 flex flex-col items-center justify-center 
             md:opacity-50 p-6 rounded-lg shadow-lg m-4 lg:w-1/2 md:h-[400px] 

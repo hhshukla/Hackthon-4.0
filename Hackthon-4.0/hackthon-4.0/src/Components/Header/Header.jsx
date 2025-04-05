@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useTheme } from "next-themes";
+import ThemeSwitcher from "../ThemeSwicher/ThemeSwithcher";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,7 +25,13 @@ const Header = () => {
             className="h-10 w-10 rounded"
             alt="The Errors Logo"
           />
-          <span className="text-xl font-bold">The Errors</span>
+          <span
+            className={` ${
+              currentTheme === "dark" ? " text-white" : " text-black"
+            } text-xl font-bold`}
+          >
+            The Errors
+          </span>
         </a>
 
         <div className="flex items-center gap-4">
@@ -83,6 +90,7 @@ const Header = () => {
             </li>
           </ul>
         </div>
+        <ThemeSwitcher />
       </div>
     </nav>
   );

@@ -21,15 +21,29 @@ const Footer = () => {
                 className="h-10 w-10 rounded-lg shadow-lg"
                 alt="The Errors Logo"
               />
-              <span className="text-2xl font-bold">The Errors</span>
+              <span
+                className={` ${
+                  currentTheme === "dark" ? " text-white" : " text-black"
+                } text-xl font-bold`}
+              >
+                The Errors
+              </span>
             </div>
-            <p className="text-gray-400">
+            <p
+              className={` ${
+                currentTheme === "dark" ? " text-white" : " text-black"
+              } text-xl font-bold`}
+            >
               Innovating the future, one line of code at a time.
             </p>
           </div>
 
           {/* Quick Links */}
-          <div className="text-center">
+          <div
+            className={`${
+              currentTheme === "dark" ? " text-white" : " text-black"
+            } "text-center"`}
+          >
             <div className="flex justify-center gap-8">
               <a
                 href="#"
@@ -53,7 +67,11 @@ const Footer = () => {
           </div>
 
           {/* Social Links */}
-          <div className="text-center md:text-right">
+          <div
+            className={`text-center md:text-right ${
+              currentTheme === "dark" ? " text-white" : " text-black"
+            }`}
+          >
             <div className="flex justify-center md:justify-end gap-6">
               <a
                 href="#"
