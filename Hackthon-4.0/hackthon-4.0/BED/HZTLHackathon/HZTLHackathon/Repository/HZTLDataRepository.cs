@@ -13,35 +13,46 @@ namespace HZTLHackathon.Repository
     public class HZTLDataRepository
     {
         private readonly Database _database;
-        private Data HZTLData;
-        private List<Data> HZTLDataList;
+        private Product HZTLData;
+        private List<Product> HZTLDataList;
         public HZTLDataRepository() {
             _database = Sitecore.Context.Database;
-            HZTLData = new Data();
-            HZTLDataList = new List<Data>();
+            HZTLData = new Product();
+            HZTLDataList = new List<Product>();
         }
 
-        public List<Data> GetData()
+        public List<Product> GetData()
         {
             try
             {
-                Item Data = _database.GetItem("{3CF974A3-6932-47A1-8C02-D7B3E508F2A0}");
+                Item Data = _database.GetItem("{7F3C1BA2-22AD-47D7-BF61-AFD57D87B7EE}");
                 if (Data != null)
                 {
                     foreach (Item dataItem in Data.GetChildren())
                     {
-                        Data HZTLData = new Data();
+                        Product HZTLData = new Product();
+                        
+                        HZTLData.Id = Convert.ToInt32(dataItem.Fields["Id"]?.Value);
+                        HZTLData.Title = dataItem.Fields["title"]?.Value.ToString();
+                        HZTLData.Description = dataItem.Fields["description"]?.Value.ToString();
+                        HZTLData.Category = dataItem.Fields["category"]?.Value.ToString();
+                        HZTLData.Price = Convert.ToDouble(dataItem.Fields["price"]?.Value.ToString());
+                        HZTLData.DiscountPercentage = Convert.ToDouble(dataItem.Fields["discountPercentage"]?.Value.ToString());
+                        HZTLData.Rating = Convert.ToDouble(dataItem.Fields["rating"]?.Value.ToString());
+                        HZTLData.Brand = dataItem.Fields["brand"]?.Value.ToString();
+                        var imagesRaw = dataItem.Fields["images"]?.Value;
+                        if (!string.IsNullOrWhiteSpace(imagesRaw))
+                        {
+                            HZTLData.Images = imagesRaw.Split('|').ToList();
+                        }
 
-                        HZTLData.Id = Convert.ToInt64(Data.Fields["id"]?.Value);
-                        HZTLData.Title = Data["title"];
-                        HZTLData.Description = Data["description"];
-                        HZTLData.Category = Data["category"];
-                        HZTLData.Price = Convert.ToDouble(Data.Fields["price"]?.Value);
-                        HZTLData.DiscountPr = Convert.ToDouble(Data.Fields["disccountpercentage"]?.Value);
-                        HZTLData.Raiting = Convert.ToDouble(Data.Fields["raiting"]?.Value);
-                        HZTLData.Brand = Data["brand"];
-                        HZTLData.Image = Data["images"];
-                        HZTLData.Stock = Convert.ToInt64(Data.Fields["stock"]?.Value);
+                        // For tags
+                        var tagsRaw = dataItem.Fields["Tags"]?.Value;
+                        if (!string.IsNullOrWhiteSpace(tagsRaw))
+                        {
+                            HZTLData.Tags = tagsRaw.Split('|').ToList();
+                        }
+                        HZTLData.Stock = Convert.ToInt32(dataItem.Fields["stock"]?.Value.ToString());
                         HZTLDataList.Add(HZTLData);
                     }
                     return HZTLDataList;

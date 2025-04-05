@@ -34,6 +34,7 @@ namespace HZTLHackathon.Controllers
             },JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
         public JsonResult Search(string keyword=null, string category = null, string brand = null, long? minPrice = null, long? maxPrice = null)
         {
             var result=productSearchService.SearchProducts(keyword, category, brand, minPrice, maxPrice);

@@ -151,13 +151,11 @@
   <ItemGroup>
     <Content Include="app_config\Include\Project\HZTLHackathon.RouteConfig.config" />
     <Content Include="app_config\Include\Project\HZTLHackathon.SiteDefination.config" />
-    <Content Include="Content\Site.css" />
     <Content Include="Views\HZTLData\Index2.cshtml" />
     <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="app_start\RouteConfig.cs" />
-    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Models\ApiResponse.cs" />
     <Compile Include="Controllers\HZTLDataController.cs" />
     <Compile Include="Models\Data.cs" />

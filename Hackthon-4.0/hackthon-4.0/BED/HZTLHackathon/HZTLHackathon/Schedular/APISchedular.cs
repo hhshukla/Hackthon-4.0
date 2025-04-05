@@ -46,7 +46,7 @@ namespace HZTLHackathon.Schedular
                         newItem.Fields["discountPercentage"].Value = product.DiscountPercentage.ToString();
                         newItem.Fields["rating"].Value = product.Rating.ToString();
                         newItem.Fields["stock"].Value = product.Stock.ToString();
-                        newItem.Fields["brand"].Value = product.Brand;
+                        newItem.Fields["brand"].Value = product.Brand ?? "NA";
                         newItem.Fields["Tags"].Value = string.Join("|", product.Tags);
                         newItem.Fields["images"].Value = string.Join("|", product.Images);
                         newItem.Editing.EndEdit();

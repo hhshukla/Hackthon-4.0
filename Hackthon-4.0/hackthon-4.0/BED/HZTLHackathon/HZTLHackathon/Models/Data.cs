@@ -2,41 +2,41 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-//using Sitecore.ContentSearch;
-//using Sitecore.ContentSearch.SearchTypes;
+using Sitecore.ContentSearch;
+using Sitecore.ContentSearch.SearchTypes;
 
 namespace HZTLHackathon.Models
 {
     public class Data
     {
-        //[IndexField("id")]
+        [IndexField("id")]
         public long Id {  get; set; }
 
-        //[IndexField("title")]
+        [IndexField("title")]
         public string Title {  get; set; }
 
-        //[IndexField("description")]
+        [IndexField("description")]
         public string Description {  get; set; }
 
-        //[IndexField("category")]
+        [IndexField("category")]
         public string Category { get; set; }
 
-        //[IndexField("price")]
+        [IndexField("price")]
         public double Price {  get; set; }
 
-        //[IndexField("discountpr")]
+        [IndexField("discountpr")]
         public double DiscountPr {  get; set; }
 
-        //[IndexField("raiting")]
+        [IndexField("raiting")]
         public double Raiting {  get; set; }
 
-        //[IndexField("stock")]
+        [IndexField("stock")]
         public long Stock {  get; set; }
 
-        //[IndexField("brand")]
+        [IndexField("brand")]
         public string Brand {  get; set; }
 
-        //[IndexField("image")]
+        [IndexField("image")]
         public string Image {  get; set; }
     }
 }
