@@ -12,6 +12,7 @@ namespace HZTLHackathon.Controllers
         // GET: Default
         public ActionResult Index()
         {
+
             return Json(new {Message="Hello"},JsonRequestBehavior.AllowGet);
         }
     }
