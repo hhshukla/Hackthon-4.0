@@ -12,20 +12,31 @@ const SearchFilter = () => {
     browserSupportsSpeechRecognition
   } = useSpeechRecognition();
 
+  // Move items declaration before state initialization
+  const items = [
+    { id: 1, name: 'Product 1', price: 100, date: '2024-01-01' },
+    { id: 2, name: 'Product 2', price: 200, date: '2024-01-02' },
+    { id: 3, name: 'Product 3', price: 150, date: '2024-01-03' },
+    { id: 4, name: 'Product 4', price: 300, date: '2024-01-04' },
+    { id: 5, name: 'Product 5', price: 250, date: '2024-01-05' },
+    { id: 6, name: 'Product 6', price: 180, date: '2024-01-06' },
+    { id: 7, name: 'Product 7', price: 220, date: '2024-01-07' },
+    { id: 8, name: 'Product 8', price: 190, date: '2024-01-08' },
+    { id: 9, name: 'Product 9', price: 270, date: '2024-01-09' },
+    { id: 10, name: 'Product 10', price: 160, date: '2024-01-10' },
+    { id: 11, name: 'Product 11', price: 240, date: '2024-01-11' },
+    { id: 12, name: 'Product 12', price: 280, date: '2024-01-12' },
+    { id: 13, name: 'Product 13', price: 210, date: '2024-01-13' },
+    { id: 14, name: 'Product 14', price: 230, date: '2024-01-14' },
+  ];
+
   const [mounted, setMounted] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [openSection, setOpenSection] = useState<string | null>('PRODUCT CATEGORY');
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('featured');
-  const [filteredItems, setFilteredItems] = useState<any[]>([]);
+  const [filteredItems, setFilteredItems] = useState<any[]>(items);
   const [selectedFilters, setSelectedFilters] = useState<{[key: string]: string[]}>({});
-
-  // Sample data - replace with your actual data
-  const items = [
-    { id: 1, name: 'Product 1', price: 100, date: '2024-01-01' },
-    { id: 2, name: 'Product 2', price: 200, date: '2024-01-02' },
-    // Add more items
-  ];
 
   const handleFilterChange = (section: string, itemName: string, checked: boolean) => {
     setSelectedFilters(prev => {
@@ -48,6 +59,18 @@ const SearchFilter = () => {
     }));
   };
 
+  // Add these new state variables after other state declarations
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 7;
+
+  // Add this pagination calculation function before the return statement
+  const paginateResults = (items: any[]) => {
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    return items.slice(indexOfFirstItem, indexOfLastItem);
+  };
+
+  // Modify the useEffect that handles filtering to include pagination
   useEffect(() => {
     let result = [...items];
 
@@ -57,6 +80,16 @@ const SearchFilter = () => {
         item.name.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
+
+    // Apply selected filters
+    Object.entries(selectedFilters).forEach(([section, selectedValues]) => {
+      if (selectedValues.length > 0) {
+        result = result.filter(item => {
+          // This is a simplified filter logic. Adjust according to your data structure
+          return selectedValues.some(value => item.name.includes(value));
+        });
+      }
+    });
 
     // Apply sorting
     switch (sortBy) {
@@ -70,12 +103,15 @@ const SearchFilter = () => {
         result.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
         break;
       default:
-        // Featured sorting (default) - can implement custom logic
         break;
     }
 
     setFilteredItems(result);
-  }, [searchQuery, sortBy]);
+    // Only reset page when filters/search change, not on initial load
+    if (searchQuery || Object.keys(selectedFilters).length > 0 || sortBy !== 'featured') {
+      setCurrentPage(1);
+    }
+  }, [searchQuery, sortBy, items, selectedFilters]);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
@@ -144,6 +180,17 @@ const SearchFilter = () => {
   }
 
   if (!mounted) return null;
+
+  // Add this line before the return statement to calculate paginated items
+  const paginatedItems = paginateResults(filteredItems);
+
+  // Add this pagination handler
+  const handlePageChange = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
+
+  // Add this to calculate total pages
+  const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
 
   return (
     <div className="container mx-auto px-4 py-6 mt-20">
@@ -290,9 +337,93 @@ const SearchFilter = () => {
             </select>
           </div>
 
+          {/* Add Pagination Controls */}
+          <div className="flex items-center justify-between border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1a1f2b] px-4 py-3 sm:px-6 mb-6 rounded-lg">
+            <div className="flex flex-1 justify-between sm:hidden">
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                className={`relative inline-flex items-center px-4 py-2 text-sm font-medium rounded-md
+                  ${currentPage === 1 
+                    ? 'text-gray-400 bg-gray-100 dark:text-gray-500 dark:bg-gray-800' 
+                    : 'text-gray-700 bg-white hover:bg-gray-50 dark:text-gray-200 dark:bg-[#1a1f2b] dark:hover:bg-gray-800'
+                  }`}
+              >
+                Previous
+              </button>
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className={`relative inline-flex items-center px-4 py-2 text-sm font-medium rounded-md
+                  ${currentPage === totalPages 
+                    ? 'text-gray-400 bg-gray-100 dark:text-gray-500 dark:bg-gray-800' 
+                    : 'text-gray-700 bg-white hover:bg-gray-50 dark:text-gray-200 dark:bg-[#1a1f2b] dark:hover:bg-gray-800'
+                  }`}
+              >
+                Next
+              </button>
+            </div>
+            <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+              <div>
+                <p className="text-sm text-gray-700 dark:text-gray-200">
+                  Showing <span className="font-medium">{(currentPage - 1) * itemsPerPage + 1}</span> to{' '}
+                  <span className="font-medium">
+                    {Math.min(currentPage * itemsPerPage, filteredItems.length)}
+                  </span> of{' '}
+                  <span className="font-medium">{filteredItems.length}</span> results
+                </p>
+              </div>
+              <div>
+                <nav className="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
+                  <button
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    disabled={currentPage === 1}
+                    className={`relative inline-flex items-center rounded-l-md px-2 py-2
+                      ${currentPage === 1 
+                        ? 'text-gray-400 bg-gray-100 dark:text-gray-500 dark:bg-gray-800' 
+                        : 'text-gray-700 bg-white hover:bg-gray-50 dark:text-gray-200 dark:bg-[#1a1f2b] dark:hover:bg-gray-800'
+                      }`}
+                  >
+                    <span className="sr-only">Previous</span>
+                    <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </button>
+                  {[...Array(totalPages)].map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => handlePageChange(idx + 1)}
+                      className={`relative inline-flex items-center px-4 py-2 text-sm font-semibold
+                        ${currentPage === idx + 1
+                          ? 'z-10 bg-blue-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
+                          : 'text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:text-gray-200 dark:ring-gray-700 dark:hover:bg-gray-800'
+                        }`}
+                    >
+                      {idx + 1}
+                    </button>
+                  ))}
+                  <button
+                    onClick={() => handlePageChange(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                    className={`relative inline-flex items-center rounded-r-md px-2 py-2
+                      ${currentPage === totalPages 
+                        ? 'text-gray-400 bg-gray-100 dark:text-gray-500 dark:bg-gray-800' 
+                        : 'text-gray-700 bg-white hover:bg-gray-50 dark:text-gray-200 dark:bg-[#1a1f2b] dark:hover:bg-gray-800'
+                      }`}
+                  >
+                    <span className="sr-only">Next</span>
+                    <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </button>
+                </nav>
+              </div>
+            </div>
+          </div>
+
           {/* Content area for filtered results */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredItems.map(item => (
+            {paginatedItems.map(item => (
               <div key={item.id} className="rounded-lg shadow p-4 bg-white dark:bg-[#1a1f2b] border border-gray-200 dark:border-gray-700">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-200">
                   {item.name}
