@@ -1,4 +1,5 @@
 import React from "react";
+import CategoryList from "@/Components/CategoryList/CategoryList";
 // import SearchFilter from '@/Components/SearchFilter/SearchFilter';
 import Header from "@/Components/Header/Header";
 import Footer from "@/Components/Footer/Footer";
@@ -10,7 +11,7 @@ const ProductsPage = () => {
     <ThemeProvider enableSystem={true} attribute="class">
       <ThemeSwitcher />
       <Header />
-      {/* <SearchFilter /> */}
+      <CategoryList />
       <Footer />
     </ThemeProvider>
   );

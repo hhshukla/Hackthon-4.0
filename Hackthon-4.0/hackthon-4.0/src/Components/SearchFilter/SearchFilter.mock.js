@@ -1,4 +1,4 @@
-export const CategoryListData = [
+export const SearchFilterData = [
   {
     status: "success",
     statuscode: "200",
