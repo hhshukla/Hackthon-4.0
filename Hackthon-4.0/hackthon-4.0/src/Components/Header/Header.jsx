@@ -16,7 +16,7 @@ const Header = () => {
     <nav
       className={` ${
         currentTheme === "dark" ? "bg-black text-white" : "bg-white text-black"
-      }"shadow-md fixed w-full z-20 top-0 start-0"`}
+      } shadow-md fixed w-full z-20 top-0 start-0`}
     >
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-6 py-3">
         <a href="/" className="flex items-center gap-3">
@@ -79,7 +79,7 @@ const Header = () => {
               </a>
             </li>
             <li>
-              <a href="#" className="text-gray-600 hover:text-blue-600">
+              <a href="/service" className="text-gray-600 hover:text-blue-600">
                 Services
               </a>
             </li>
