@@ -12,23 +12,102 @@ const SearchFilter = () => {
     browserSupportsSpeechRecognition
   } = useSpeechRecognition();
 
-  // Move items declaration before state initialization
-  const items = [
-    { id: 1, name: 'Product 1', price: 100, date: '2024-01-01' },
-    { id: 2, name: 'Product 2', price: 200, date: '2024-01-02' },
-    { id: 3, name: 'Product 3', price: 150, date: '2024-01-03' },
-    { id: 4, name: 'Product 4', price: 300, date: '2024-01-04' },
-    { id: 5, name: 'Product 5', price: 250, date: '2024-01-05' },
-    { id: 6, name: 'Product 6', price: 180, date: '2024-01-06' },
-    { id: 7, name: 'Product 7', price: 220, date: '2024-01-07' },
-    { id: 8, name: 'Product 8', price: 190, date: '2024-01-08' },
-    { id: 9, name: 'Product 9', price: 270, date: '2024-01-09' },
-    { id: 10, name: 'Product 10', price: 160, date: '2024-01-10' },
-    { id: 11, name: 'Product 11', price: 240, date: '2024-01-11' },
-    { id: 12, name: 'Product 12', price: 280, date: '2024-01-12' },
-    { id: 13, name: 'Product 13', price: 210, date: '2024-01-13' },
-    { id: 14, name: 'Product 14', price: 230, date: '2024-01-14' },
+  // Replace the static items with API data
+  const [items, setItems] = useState<any[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
+  const [brands, setBrands] = useState<string[]>([]);
+
+  // Add loading state
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Fetch data from API
+  // Add mock data at the top of your component
+  const mockData = [
+    {
+      id: 1,
+      name: 'Product 1',
+      Category: 'Accessories',
+      Brand: 'Brand A',
+      price: 99.99,
+      date: '2024-01-01'
+    },
+    {
+      id: 2,
+      name: 'Product 2',
+      Category: 'Air Therapy',
+      Brand: 'Brand B',
+      price: 149.99,
+      date: '2024-01-02'
+    },
+    // Add more mock items as needed
   ];
+
+  // Modify the useEffect for fetching data
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://horizontaltrainingsc.dev.local/api/HZTLData/index', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          mode: 'cors', // Enable CORS
+        });
+    
+        console.log('API Response Status:', response.status);
+        console.log('API Response Headers:', response.headers);
+        
+        // Handle different error status codes
+        if (response.status === 500) {
+          console.error('Server error detected, falling back to mock data');
+          setItems(mockData);
+          const uniqueCategories = [...new Set(mockData.map(item => item.Category))];
+          const uniqueBrands = [...new Set(mockData.map(item => item.Brand))];
+          setCategories(uniqueCategories);
+          setBrands(uniqueBrands);
+          return;
+        }
+
+        if (!response.ok) {
+          console.error(`API Error: ${response.status} - ${response.statusText}`);
+          throw new Error(`API Error: ${response.status} - ${response.statusText}`);
+        }
+    
+        const result = await response.json();
+        console.log('API Response Data:', result);
+        
+        if (result && result.data) {
+          setItems(result.data);
+          const uniqueCategories = [...new Set(result.data.map((item: any) => item.Category || ''))];
+          const uniqueBrands = [...new Set(result.data.map((item: any) => item.Brand || ''))];
+          setCategories(uniqueCategories.filter(Boolean) as string[]);
+          setBrands(uniqueBrands.filter(Boolean) as string[]);
+        } else {
+          console.warn('Invalid API response structure:', result);
+          setItems(mockData);
+          const uniqueCategories = [...new Set(mockData.map(item => item.Category))];
+          const uniqueBrands = [...new Set(mockData.map(item => item.Brand))];
+          setCategories(uniqueCategories);
+          setBrands(uniqueBrands);
+        }
+      } catch (error) {
+        console.error('Error details:', {
+          // message: error.message,
+          // stack: error.stack,
+        });
+        setItems(mockData);
+        const uniqueCategories = [...new Set(mockData.map(item => item.Category))];
+        const uniqueBrands = [...new Set(mockData.map(item => item.Brand))];
+        setCategories(uniqueCategories);
+        setBrands(uniqueBrands);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const [mounted, setMounted] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
