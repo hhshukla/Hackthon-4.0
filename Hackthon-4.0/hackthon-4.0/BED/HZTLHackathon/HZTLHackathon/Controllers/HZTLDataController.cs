@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using HZTLHackathon.Models;
 using HZTLHackathon.Repository;
 using HZTLHackathon.Services;
+using Sitecore.ContentSearch;
 
 namespace HZTLHackathon.Controllers
 {
@@ -45,6 +46,51 @@ namespace HZTLHackathon.Controllers
         {
 
            return View();
+        }
+
+        [HttpGet]
+        public JsonResult GetProducts(string query = "", string category = "", double? minPrice = null, double? maxPrice = null)
+        {
+            var response = new ApiResponse
+            {
+                Products = new List<Product>()
+            };
+            var index = ContentSearchManager.GetIndex("sitecore_web_index");
+            var context = index.CreateSearchContext();
+            var productQuery = context.GetQueryable<Product>()
+                .Where(x => string.IsNullOrEmpty(query) || x.Title.Contains(query) || x.Description.Contains(query));
+            // Apply category filter if specified
+            if (!string.IsNullOrEmpty(category))
+            {
+                productQuery = productQuery.Where(x => x.Category == category);
+            }
+            // Apply price range filter if specified
+            if (minPrice.HasValue)
+            {
+                productQuery = productQuery.Where(x => x.Price >= minPrice.Value);
+            }
+            if (maxPrice.HasValue)
+            {
+                productQuery = productQuery.Where(x => x.Price <= maxPrice.Value);
+            }
+            // Execute the query and take the top 20 results
+            var products = productQuery.Take(20).ToList();
+            // Map the query results to the ApiResponse model
+            response.Products = products.Select(x => new Product
+            {
+                Id = Convert.ToInt32(x.Id),
+                Title = x.Title,
+                Description = x.Description,
+                Category = x.Category,
+                Price = Convert.ToDouble(x.Price),
+                DiscountPercentage = Convert.ToDouble(x.DiscountPercentage),
+                Rating = Convert.ToDouble(x.Rating),
+                Stock = x.Stock,
+                Brand = x.Brand,
+                Tags = x.Tags,
+                Images = x.Images
+            }).ToList();
+            return Json(response, JsonRequestBehavior.AllowGet);
         }
     }
 }
