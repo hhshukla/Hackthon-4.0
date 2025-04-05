@@ -15,6 +15,7 @@ type Product = {
   thumbnail: string;
   price: number;
   category: string;
+  rating: number;
 };
 
 const ITEMS_PER_PAGE_DESKTOP = 9;
@@ -23,7 +24,9 @@ const ITEMS_PER_PAGE_MOBILE = 4;
 const CategoryList: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   // Update the sortOrder type
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc" | "rating-high" | "rating-low">("asc");
+  const [sortOrder, setSortOrder] = useState<
+    "asc" | "desc" | "rating-high" | "rating-low"
+  >("asc");
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [windowWidth, setWindowWidth] = useState<number>(0);
@@ -309,7 +312,11 @@ const CategoryList: React.FC = () => {
               currentTheme === "dark" ? "text-white" : "text-black"
             }`}
             value={sortOrder}
-            onChange={(e) => setSortOrder(e.target.value as "asc" | "desc" | "rating-high" | "rating-low")}
+            onChange={(e) =>
+              setSortOrder(
+                e.target.value as "asc" | "desc" | "rating-high" | "rating-low"
+              )
+            }
           >
             <option value="asc">Price: Low → High</option>
             <option value="desc">Price: High → Low</option>
@@ -350,9 +357,8 @@ const CategoryList: React.FC = () => {
                   ${data.price.toFixed(2)}
                 </div>
                 <div className="text-base font-bold text-pink-600">
-                      Rating: {(data as any).rating} ⭐
+                  Rating: {data.rating} ⭐
                 </div>
-                
               </div>
             </div>
           ))}
@@ -365,9 +371,10 @@ const CategoryList: React.FC = () => {
               onClick={() => setCurrentPage(currentPage - 1)}
               disabled={currentPage === 1}
               className={`relative inline-flex items-center px-4 py-2 text-sm font-medium rounded-md
-                ${currentPage === 1 
-                  ? 'text-gray-400 bg-gray-100 dark:text-gray-500 dark:bg-gray-800' 
-                  : 'text-gray-700 bg-white hover:bg-gray-50 dark:text-gray-200 dark:bg-black dark:hover:bg-gray-800'
+                ${
+                  currentPage === 1
+                    ? "text-gray-400 bg-gray-100 dark:text-gray-500 dark:bg-gray-800"
+                    : "text-gray-700 bg-white hover:bg-gray-50 dark:text-gray-200 dark:bg-black dark:hover:bg-gray-800"
                 }`}
             >
               Previous
@@ -376,9 +383,10 @@ const CategoryList: React.FC = () => {
               onClick={() => setCurrentPage(currentPage + 1)}
               disabled={currentPage === totalPages}
               className={`relative inline-flex items-center px-4 py-2 text-sm font-medium rounded-md
-                ${currentPage === totalPages 
-                  ? 'text-gray-400 bg-gray-100 dark:text-gray-500 dark:bg-gray-800' 
-                  : 'text-gray-700 bg-white hover:bg-gray-50 dark:text-gray-200 dark:bg-black dark:hover:bg-gray-800'
+                ${
+                  currentPage === totalPages
+                    ? "text-gray-400 bg-gray-100 dark:text-gray-500 dark:bg-gray-800"
+                    : "text-gray-700 bg-white hover:bg-gray-50 dark:text-gray-200 dark:bg-black dark:hover:bg-gray-800"
                 }`}
             >
               Next
@@ -387,27 +395,45 @@ const CategoryList: React.FC = () => {
           <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
             <div>
               <p className="text-sm text-gray-700 dark:text-gray-200">
-                Showing <span className="font-medium">{(currentPage - 1) * itemsPerPage + 1}</span> to{' '}
+                Showing{" "}
+                <span className="font-medium">
+                  {(currentPage - 1) * itemsPerPage + 1}
+                </span>{" "}
+                to{" "}
                 <span className="font-medium">
                   {Math.min(currentPage * itemsPerPage, filteredData.length)}
-                </span> of{' '}
-                <span className="font-medium">{filteredData.length}</span> results
+                </span>{" "}
+                of <span className="font-medium">{filteredData.length}</span>{" "}
+                results
               </p>
             </div>
             <div>
-              <nav className="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
+              <nav
+                className="isolate inline-flex -space-x-px rounded-md shadow-sm"
+                aria-label="Pagination"
+              >
                 <button
                   onClick={() => setCurrentPage(currentPage - 1)}
                   disabled={currentPage === 1}
                   className={`relative inline-flex items-center rounded-l-md px-2 py-2
-                    ${currentPage === 1 
-                      ? 'text-gray-400 bg-gray-100 dark:text-gray-500 dark:bg-gray-800' 
-                      : 'text-gray-700 bg-white hover:bg-gray-50 dark:text-gray-200 dark:bg-black dark:hover:bg-gray-800'
+                    ${
+                      currentPage === 1
+                        ? "text-gray-400 bg-gray-100 dark:text-gray-500 dark:bg-gray-800"
+                        : "text-gray-700 bg-white hover:bg-gray-50 dark:text-gray-200 dark:bg-black dark:hover:bg-gray-800"
                     }`}
                 >
                   <span className="sr-only">Previous</span>
-                  <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
+                  <svg
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
                   </svg>
                 </button>
                 {[...Array(totalPages)].map((_, idx) => (
@@ -415,9 +441,10 @@ const CategoryList: React.FC = () => {
                     key={idx}
                     onClick={() => setCurrentPage(idx + 1)}
                     className={`relative inline-flex items-center px-4 py-2 text-sm font-semibold
-                      ${currentPage === idx + 1
-                        ? 'z-10 bg-blue-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
-                        : 'text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:text-gray-200 dark:ring-gray-700 dark:hover:bg-gray-800'
+                      ${
+                        currentPage === idx + 1
+                          ? "z-10 bg-blue-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                          : "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:text-gray-200 dark:ring-gray-700 dark:hover:bg-gray-800"
                       }`}
                   >
                     {idx + 1}
@@ -427,14 +454,24 @@ const CategoryList: React.FC = () => {
                   onClick={() => setCurrentPage(currentPage + 1)}
                   disabled={currentPage === totalPages}
                   className={`relative inline-flex items-center rounded-r-md px-2 py-2
-                    ${currentPage === totalPages 
-                      ? 'text-gray-400 bg-gray-100 dark:text-gray-500 dark:bg-gray-800' 
-                      : 'text-gray-700 bg-white hover:bg-gray-50 dark:text-gray-200 dark:bg-black dark:hover:bg-gray-800'
+                    ${
+                      currentPage === totalPages
+                        ? "text-gray-400 bg-gray-100 dark:text-gray-500 dark:bg-gray-800"
+                        : "text-gray-700 bg-white hover:bg-gray-50 dark:text-gray-200 dark:bg-black dark:hover:bg-gray-800"
                     }`}
                 >
                   <span className="sr-only">Next</span>
-                  <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                  <svg
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                      clipRule="evenodd"
+                    />
                   </svg>
                 </button>
               </nav>
