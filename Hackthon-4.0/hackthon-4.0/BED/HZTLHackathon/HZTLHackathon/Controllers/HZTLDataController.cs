@@ -78,13 +78,13 @@ namespace HZTLHackathon.Controllers
             // Map the query results to the ApiResponse model
             response.Products = products.Select(x => new Product
             {
-                Id = x.Id,
+                Id = Convert.ToInt32(x.Id),
                 Title = x.Title,
                 Description = x.Description,
                 Category = x.Category,
-                Price = x.Price,
-                DiscountPercentage = x.DiscountPercentage,
-                Rating = x.Rating,
+                Price = Convert.ToDouble(x.Price),
+                DiscountPercentage = Convert.ToDouble(x.DiscountPercentage),
+                Rating = Convert.ToDouble(x.Rating),
                 Stock = x.Stock,
                 Brand = x.Brand,
                 Tags = x.Tags,

@@ -28,10 +28,10 @@ namespace HZTLHackathon.Services
                     predicate = predicate.And(p => p.Brand == brand);
 
                 if (minPrice.HasValue)
-                    predicate = predicate.And(p => p.Price >= minPrice.Value);
+                    predicate = predicate.And(p => p.Price >= Convert.ToDouble(minPrice.Value));
 
                 if (maxPrice.HasValue)
-                    predicate = predicate.And(p => p.Price <= maxPrice.Value);
+                    predicate = predicate.And(p => p.Price <= Convert.ToDouble(maxPrice.Value));
 
                 return context.GetQueryable<Data>()
                               .Where(predicate)

@@ -41,6 +41,7 @@ namespace HZTLHackathon.Services
                 if (item == null) return null;
 
                 string fieldValue = item.Item[FieldName];
+                Sitecore.Diagnostics.Log.Info($"[DEBUG] FieldName: {FieldName}, Value: '{fieldValue}'", this);
 
                 if (int.TryParse(fieldValue, out var result))
                 {
