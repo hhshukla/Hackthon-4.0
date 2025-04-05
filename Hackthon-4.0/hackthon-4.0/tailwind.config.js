@@ -3,8 +3,11 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
     "./.storybook/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  theme: {
-    extend: {},
+  extend: {
+    colors: {
+      "primary-white": "#fff",
+      "primary-black": "#000",
+    },
   },
   plugins: [],
 };

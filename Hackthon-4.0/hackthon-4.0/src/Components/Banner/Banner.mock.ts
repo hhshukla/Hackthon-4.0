@@ -1,9 +1,9 @@
 export const BannerData = {
-    img: "./Image/banner-bg.png",
-    title1: "Car Rent",
-    title2: "For You",
-    description: "There are many variations of passages of Lorem Ipsum available, but the majority",
-    buttonText1:"Read More",
-    buttonText2:"Contact Us",
-
-}
+  img: "/Images/5-AI-Advancements-to-Expect-in-the-Next-10-Years-scaled.jpeg",
+  title1: "AI Innovations",
+  title2: "Shaping 2025",
+  description:
+    "Explore how generative AI, multimodal models, and autonomous agents are transforming industries, redefining creativity, and pushing the boundaries of human-machine collaboration.",
+  buttonText1: "Discover More",
+  buttonText2: "Talk to an Expert",
+};
