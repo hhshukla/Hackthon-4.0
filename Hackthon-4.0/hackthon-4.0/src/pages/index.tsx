@@ -9,6 +9,7 @@ import Footer from "@/Components/Footer/Footer";
 // import CategoryList from "@/Components/CategoryList/CategoryList";
 import CardList from "@/Components/CardList/CardList";
 import ChatBot from "@/Components/Chatbot/Chatbot";
+import ContentBlock from "@/Components/ContentBlock/ContentBlock";
 // import SearchFilter from "@/Components/SearchFilter/SearchFilter";
 const index = () => {
   return (
@@ -18,6 +19,7 @@ const index = () => {
       <Banner {...BannerData} />
       {/* <DummyTest /> */}
       <CardList layout="vertical" />
+      <ContentBlock />
       {/* <CategoryList /> */}
       {/* <SearchFilter /> */}
       <Footer />
