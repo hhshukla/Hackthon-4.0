@@ -1,17 +1,16 @@
-import CardList from "@/Components/CardList/CardList";
+import ContactUs from "@/Components/ContactUs/ContactUs";
 import Footer from "@/Components/Footer/Footer";
 import Header from "@/Components/Header/Header";
 import React from "react";
 
-const service = () => {
+const contact = () => {
   return (
     <div>
       <Header />
-      <CardList layout="horizontal" />
-
+      <ContactUs />
       <Footer />
     </div>
   );
 };
 
-export default service;
+export default contact;

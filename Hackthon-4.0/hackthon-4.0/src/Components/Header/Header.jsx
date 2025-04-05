@@ -45,7 +45,7 @@ const Header = () => {
             type="button"
             className="text-white bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-md font-medium"
           >
-            Get started
+            Let's Connect
           </button>
           <button
             onClick={toggleMenu}
