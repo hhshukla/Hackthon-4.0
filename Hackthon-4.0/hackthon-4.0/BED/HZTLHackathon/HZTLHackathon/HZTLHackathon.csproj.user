@@ -9,7 +9,7 @@
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <LastActiveSolutionConfig>Release|Any CPU</LastActiveSolutionConfig>
-    <NameOfLastUsedPublishProfile>C:\Projects\horizontaltraining\HZTLHACKATHON\Hackthon-4.0\Hackthon-4.0\hackthon-4.0\BED\HZTLHackathon\HZTLHackathon\Properties\PublishProfiles\FolderProfile.pubxml</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>C:\projects\Hackthon-4.0\Hackthon-4.0\hackthon-4.0\BED\HZTLHackathon\HZTLHackathon\Properties\PublishProfiles\FolderProfile.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
